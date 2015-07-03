@@ -1,0 +1,311 @@
+\documentclass[12pt]{article}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+\begin{document}
+\section*{PFEM commands}
+\subsubsection*{PFEM2D discretize rectangle \$startnodetag \$x1 \$y1 \\
+\$hx \$hy \$angle \$nx \$ny \$ndf -fix \$constraintList \\
+ -mass \$massList -vel \$velList -boundary \$boundaryList}
+\begin{tabular}{ll}
+rectangle & discretize a rectangular area\\
+\$startnodetag & tag the first node\\ 
+\$x1 \$y1 & lower left corner of rectangle\\
+\$hx \$hy & division length in local x and y direction\\
+\$angle & the angle between local and global x direction\\
+\$nx \$ny & number of divisions in local x and y direction\\
+\$ndf & ndf for nodes created\\
+\$constraintList & a list for constraints: 1-fixed, 0-free\\
+\$massList & a list for mass\\
+\$velList & a list for velocity\\
+\$boundaryList & a list for including a boundary or not, 1-included, 0-not included\\
+boundary order &
+\setlength{\unitlength}{2cm}
+\begin{picture}(1.1,1.1)
+\put(0.1,0.1){\line(1,0){0.8}}
+\put(0.9,0.1){\line(0,1){0.8}}
+\put(0.1,0.9){\line(1,0){0.8}}
+\put(0.1,0.1){\line(0,1){0.8}}
+\put(0.2,0.2){\vector(0,1){0.3}}
+\put(0.2,0.2){\vector(1,0){0.3}}
+\put(0.55,0.2){X}
+\put(0.2,0.55){Y}
+\put(-0.05,0.5){2}
+\put(0.95,0.5){3}
+\put(0.5,-0.05){0}
+\put(0.5,0.95){1}
+\end{picture}\\
+return value & the end node
+\end{tabular}
+
+
+
+
+
+\subsubsection*{PFEM2D discretize triangle \$startnodetag \$x1 \$y1 \\
+\$x2 \$y2 \$x3 \$y3 \$n1 \$n2 \$ndf -fix \$constraintList \\
+ -mass \$massList -vel \$velList -boundary \$boundaryList -angleRange \$angleList}
+\begin{tabular}{ll}
+triangle & discretize a triangular area\\
+\$startnodetag & tag the first node\\ 
+\$x1 \$y1 & first point of rectangle\\
+\$x2 \$y2 & second point of rectangle\\
+\$x3 \$y3 & third point of rectangle\\
+\$n1 \$n2 & number of divisions along triangle sides\\
+\$ndf & ndf for nodes created\\
+\$constraintList & a list for constraints: 1-fixed, 0-free\\
+\$massList & a list for mass\\
+\$velList & a list for velocity\\
+\$boundaryList & a list for including a boundary or not, 1-included, 0-not included\\
+boundary order &
+\setlength{\unitlength}{2cm}
+\begin{picture}(1.2,1.2)
+\put(0.2,0.2){\line(0,1){0.8}}
+\put(0.2,0.2){\line(1,0){0.8}}
+\qbezier(0.2,1.0)(0.2,1.0)(1.0,0.2)
+\put(0.1,0.1){\circle{0.2}}
+\put(0.05,0.05){1}
+\put(0.65,0.65){0}
+\put(1.1,0.1){\circle{0.2}}
+\put(1.05,0.05){2}
+\put(0.0,0.5){1}
+\put(0.1,1.1){\circle{0.2}}
+\put(0.05,1.05){3}
+\put(0.5,0.0){2}
+\end{picture}\\
+return value & the end node
+\end{tabular}
+
+\subsubsection*{PFEM2D discretize circle \$startnodetag \$xc \$yc \\
+\$r1 \$r2 \$nc \$nr \$ndf -fix \$constraintList \\
+ -mass \$massList -vel \$velList -boundary \$boundaryList}
+\begin{tabular}{ll}
+circle & discretize a circular area\\
+\$startnodetag & tag the first node\\ 
+\$xc \$yc & center of circle\\
+\$r1 \$r2 & inner and outer radius\\
+\$nc \$nr & number of divisions along circle and radius direction\\
+\$ndf & ndf for nodes created\\
+\$constraintList & a list for constraints: 1-fixed, 0-free\\
+\$massList & a list for mass\\
+\$velList & a list for velocity\\
+\$boundaryList & a list for including a boundary or not, 1-included, 0-not included\\
+\$angleList & start and end angle of the circle in degrees, [0, 360]\\
+boundary order &
+\setlength{\unitlength}{2cm}
+\begin{picture}(1.0,1.0)
+\put(0.5,0.5){\circle{0.7}}
+\put(0.5,0.5){\circle{0.3}}
+\put(0.5,0.66){0}
+\put(0.5,0.9){1}
+\end{picture}\\
+return value & the end node
+\end{tabular}
+
+\subsubsection*{PFEM2D discretize line \$startnodetag \$x1 \$y1 \\
+\$h \$angle \$num \$ndf -fix \$constraintList \\
+ -mass \$massList -vel \$velList -boundary \$boundaryList}
+\begin{tabular}{ll}
+line & discretize a line\\
+\$startnodetag & tag the first node\\ 
+\$x1 \$y1 & start point\\
+\$h & division length\\
+\$angle & the angle between the line and global x direction\\
+\$num & number of divisions\\
+\$ndf & ndf for nodes created\\
+\$constraintList & a list for constraints: 1-fixed, 0-free\\
+\$massList & a list for mass\\
+\$velList & a list for velocity\\
+\$boundaryList & a list for including a boundary or not, 1-included, 0-not included\\
+boundary order &
+\setlength{\unitlength}{2cm}
+\begin{picture}(1.0,1.0)
+\put(0.1,0.5){\line(1,0){0.8}}
+\put(0.1,0.3){\circle{0.2}}
+\put(0.05,0.25){1}
+\put(0.05,0.55){0}
+\put(0.9,0.3){\circle{0.2}}
+\put(0.85,0.25){2}
+\put(0.85,0.55){1}
+\end{picture}\\
+return value & the end node
+\end{tabular}
+
+\subsubsection*{PFEM2D discretize PSLG \$startnodetag \$maxarea \$ndf\\
+-points \$coordinateList -segments \$pointList -vel \$velList\\
+-fix \$constraintList -mass \$massList -holes \$pointList}
+%(Warning: this command might fail, use with caution)\\
+\begin{tabular}{ll}
+PSLG & discretize a Planar Straight Line Graph\\
+\$startnodetag & tag the first node\\ 
+\$maxarea & maximum area for triangulation\\
+\$ndf & ndf for nodes created\\
+\$constraintList & a list for constraints: 1-fixed, 0-free\\
+\$massList & a list for mass\\
+\$velList & a list for velocity\\
+return value & the end node
+\end{tabular}
+
+\subsubsection*{PFEM2D discretize particles \$startnodetag \$ndf\\
+-points \$coordinateList -vel \$velList\\
+-fix \$constraintList -mass \$massList }
+\begin{tabular}{ll}
+particles & create single particles\\
+\$startnodetag & tag the first node\\ 
+\$ndf & ndf for nodes created\\
+\$constraintList & a list for constraints: 1-fixed, 0-free\\
+\$massList & a list for mass\\
+\$velList & a list for velocity\\
+return value & the end node
+\end{tabular}
+
+\subsubsection*{PFEM2D discretize frame \$startnodetag 
+\$x \$y \$hcol \$hbeam \$ndf \\
+\$spanlist \$hlist -fix \$constraintList -colmass \$massList\\
+-beammass \$massList -roofmass \$massList
+-colvel \$velList -beamvel \$velList }
+\begin{tabular}{ll}
+frame & discretize a frame\\
+\$x & start x coordinate\\
+\$y & start y coordinate\\
+\$startnodetag & tag the first node\\ 
+\$spanlist & spans\\
+\$hlist & floor heights\\
+\$hcol & element size for column\\
+\$hbeam & element size for beam\\
+\$ndf & ndf for nodes created\\
+-fix & fixity for base nodes\\
+-colmass & mass for column nodes\\
+-beammass & mass for beam nodes\\
+-roofmass & mass for roof nodes\\
+-colvel & initial velocity for column nodes\\
+-colvel & initial velocity for beam nodes\\
+return list & joint nodes from 1st column to nth column, for each column
+from 1st floor to nth floor.\\
+& beam end nodes from 1st span to nth span, for each span from 1st floor
+to nth floor.
+\end{tabular}
+
+\subsubsection*{element PFEMElement2D \$type \$tag \$nd1 \$nd2 \$nd3 \$rho \$mu \$bx \$by $<$\$thk$>$ $<$\$kappa$>$}
+\begin{tabular}{ll}
+\$type & element type (PressureGradient, Bubble, or Compressible) \\
+\$tag & element tag\\
+\$nd1 \$nd2 \$nd3 & three nodes\\
+\$rho & fluid density\\
+\$mu & fluid viscosity\\
+\$bx \$by & body forces\\
+\$thk & thickness of the element\\
+\$kappa & bulk modulus (for Bubble or Compressible)
+\end{tabular}
+
+\subsubsection*{PFEM2D doTriangulation \$alpha -groups \$groupList\\
+-addgroups \$addtinalGroupList \\
+-PFEMElement2DBubble 
+\$parameterList(starteletag rho mu bx by $<$thk$>$ $<$kappa$>$\\
+-PFEMElement2DCompressible
+\$parameterList(starteletag rho mu bx by $<$thk$>$ $<$kappa$>$\\
+-PFEMElement2D \$parameterList(starteletag rho mu bx by $<$thk$>$\\
+-Tri31 \$parameterList (starteletag thk type matTag $<$pressure rho b1 b2$>$)}
+\begin{tabular}{ll}
+doTriangulation & triangulate the nodes given\\
+\$alpha & alpha value for identify boundary, $>$1, usually, 1.4 or 1.5 are good values\\
+-groups & group tags\\
+-addgroups & additional groups\\
+-PFEMElement2D & PFEMElement2D elements are created\\
+-PFEMElement2DBubble & PFEMElement2DBubble elements are created\\
+-PFEMElement2DCompressible & PFEMElement2DCompressible elements are created\\
+-Tri31 & Tri31 elements are created\\
+return value & the end element if -PFEMElement2D is set, otherwise, the list of triangulation
+\end{tabular}
+
+\subsubsection*{PFEM2D save \$filename $<$\$maxelenodes$>$}
+\begin{tabular}{ll}
+save & save nodes and elements\\
+\$filename & filename for saving including path, extension .node and .element will be added\\
+\$maxelenodes & maximum number of nodes in each element
+\end{tabular}
+
+\subsubsection*{PFEM2D setBoundary \$x1 \$y1 \$x2 \$y2}
+\begin{tabular}{ll}
+setBoundary & set virtual boundary\\
+\$x1 \$y1 \$x2 \$y2 & bounding box of the boundary
+\end{tabular}
+
+\subsubsection*{PFEM2D removeOutBoundNode \$grouplist}
+\begin{tabular}{ll}
+removeOutBoundNode & remove node that are out of the virtual boundary\\
+grouplist & group tags
+\end{tabular}
+
+\subsubsection*{PFEM2D calculateForces -boundary \$nodeList \\
+-basenode \$nd -dragdir \$dirList -liftdir \$dirList}
+\begin{tabular}{ll}
+calculateForces & calculate the drag and lift forces\\
+-boundary & start and end nodes that form the boundary, can have multiple start-end nodes\\
+-basenode & the base node for calculating overturning moment\\
+-dragdir & the direction list of drag force\\
+-liftdir & the direction list of lift force\\
+return value & the forces
+\end{tabular}
+
+\subsubsection*{PFEM2D pc \$groupList \$startpressurenode}
+\begin{tabular}{ll}
+\$groupList & group tags\\
+\$startpressurenode & start tag for the pressure node in  Pressure\_Constraint\\
+return value & end pressure node tag
+\end{tabular}
+
+\subsubsection*{PFEM2D group \$groupTag \$nodelist -append -remove -series}
+\begin{tabular}{ll}
+\$groupTag & group tag\\
+\$nodelist & a list of node tags\\
+-append & append to current group tag\\
+-remove & remove from current group tag\\
+-series & treat the node list as a series of node tags, instead
+of end node tags
+\end{tabular}
+
+\subsubsection*{PFEM2D updateNode \$type \$tag \$dof \$val}
+\begin{tabular}{ll}
+\$type & coord/disp/vel/accel\\
+\$tag & node tag\\
+\$dof & node dof\\
+\$val & value to update
+\end{tabular}
+
+\subsubsection*{PFEM2D identify \$starteletag -mass \$masslist -loads \$loadlist}
+\begin{tabular}{ll}
+identify & to identify fluid/structure/interface/isolated nodes\\
+\$starteletag & start element tag for SingleNodeElement\\
+-mass & mass for isolated nodes\\
+\$loads & loads for isolated nodes
+\end{tabular}
+
+\subsubsection*{system PFEM $<$-compressible$>$}
+
+
+\subsubsection*{analysis PFEM \$dtmax \$dtmin}
+\begin{tabular}{ll}
+\$dtmax & maximum time step\\
+\$dtmin & minimum time step
+\end{tabular}
+
+
+\subsubsection*{test PFEM \$tolv \$tolp \$tolrv \$tolrp \$tolvrel \$tolprel \$maxIter\\ 
+$<$\$maxIncr \$printFlag \$normType$>$}
+\begin{tabular}{ll}
+\$tolv \$tolp & tolerance for velocity and pressure\\
+\$tolrv \$tolrp & tolerance for residual\\
+\$tolvrel \$tolprel & relative tolerance for velocity and pressure\\
+\$maxIter & maximum iterations\\
+\$maxIncr & maximum number allowing norms increasing\\
+\$printFlag & flag for printing message\\
+\$normType & method to calculate norm
+\end{tabular}
+
+\subsubsection*{nodePressure ndtag}
+
+\subsubsection*{sensNodePressure ndtag paramTag}
+
+\subsubsection*{integrator PFEMWithSensitivity}
+
+\end{document}
